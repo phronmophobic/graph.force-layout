@@ -6,7 +6,7 @@ Naive implementation of force directed graph layout with GUI.
 
 Run the project directly.
 
-    $ clojure -M:run-m
+    clojure -M:run-m
 
 ## Repl usage
 
