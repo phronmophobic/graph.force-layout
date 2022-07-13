@@ -1,6 +1,8 @@
 {:paths ["src" "resources"]
  :deps {org.clojure/clojure {:mvn/version "1.10.3"}
-        com.phronemophobic/membrane {:mvn/version "0.9.31.8-beta"}
+        com.phronemophobic/membrane {;; :mvn/version "0.9.31.8-beta"
+                                     :git/url "https://github.com/phronmophobic/membrane"
+                                     :git/sha "96c5bfc56a5efdbb6b386a50dd68e1a224469b6c"}
         ubergraph/ubergraph {:mvn/version "0.8.2"}
         euclidean/euclidean {:mvn/version "0.2.0"}
         org.clojure/math.combinatorics {:mvn/version "0.1.6"}

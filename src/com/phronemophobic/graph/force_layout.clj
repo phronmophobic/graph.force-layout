@@ -1,6 +1,6 @@
 (ns com.phronemophobic.graph.force-layout
   (:require [membrane.ui :as ui]
-            [membrane.skia :as backend]
+            [membrane.java2d :as backend]
             [membrane.component :as com
              :refer [defui defeffect make-app] ]
             [membrane.basic-components :as basic]
@@ -308,9 +308,23 @@
     (swap! state assoc :winfo winfo)))
 
 (defn -main [& args]
-  (swap! state assoc
-         :winfo {::backend/repaint #'backend/glfw-post-empty-event})
-  (backend/run-sync (make-app #'gview state)))
+  (let [winfo (backend/run (make-app #'gview state))
+        p (promise)
+        frame (::backend/frame winfo)]
+    (swap! state assoc
+         :winfo winfo)
+    (.addWindowListener frame
+                        (reify java.awt.event.WindowListener
+                          (^void windowActivated [this ^java.awt.event.WindowEvent e])
+                          (^void windowClosed [this ^java.awt.event.WindowEvent e])
+                          (^void windowClosing [this ^java.awt.event.WindowEvent e]
+                           (deliver p winfo))
+                          (^void windowDeactivated [this ^java.awt.event.WindowEvent e])
+                          (^void windowDeiconified [this ^java.awt.event.WindowEvent e])
+                          (^void windowIconified [this ^java.awt.event.WindowEvent e])
+                          (^void windowOpened [this ^java.awt.event.WindowEvent e])))
+    @p
+    (.dispose frame)))
 
 
 
