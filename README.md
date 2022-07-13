@@ -2,6 +2,8 @@
 
 Naive implementation of force directed graph layout with GUI.
 
+![force-layout-demo](jiggle.gif?raw=true)
+
 ## Cli Usage
 
 Run the project directly.
