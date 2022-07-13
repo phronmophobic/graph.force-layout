@@ -4,7 +4,7 @@ Naive implementation of force directed graph layout with GUI.
 
 ## Cli Usage
 
-Run the project directly, via `:main-opts` (`-m com.phronemophobic.graph.force-layout`):
+Run the project directly.
 
     $ clojure -M:run-m
 
